@@ -1,70 +1,75 @@
-# Hướng dẫn tạo trường hợp SAFE và UNSAFE cho SIEM AI
+# Hướng Dẫn Dễ Hiểu: Tạo Trường Hợp SAFE và UNSAFE Cho SIEM AI
 
-## 1. Giới thiệu tổng quan
-Mục tiêu: xây dựng bộ test rõ ràng để đánh giá mô hình phát hiện "phiên không an toàn" (unsafe session) trong hệ thống SIEM. 
+## Mục Tiêu
+Chúng ta cần tạo bộ dữ liệu test để kiểm tra mô hình AI phát hiện "phiên không an toàn" (unsafe session) trong hệ thống SIEM.
 
-- SAFE: phiên hoạt động bình thường, không có dấu hiệu bất thường
-- UNSAFE: phiên có một hoặc nhiều yếu tố rủi ro cao như kết nối tới cổng nhạy cảm, dữ liệu tải lớn, thời gian dài, hành vi login bất thường.
+- **SAFE**: Phiên hoạt động bình thường, không có dấu hiệu lạ.
+- **UNSAFE**: Phiên có yếu tố rủi ro cao, như kết nối cổng nhạy cảm, tải dữ liệu lớn, thời gian dài, hoặc hành vi login bất thường.
 
-## 2. Các thành phần chính cần lưu ý
+## Các Yếu Tố Chính Để Xem Xét
 
-1. `event_type`:
-   - Mô tả loại sự kiện (login, access, network, process, ...).
-   - SAFE nếu kiểu sự kiện mang tính bình thường như `device_change`, `resource_access`.
-   - UNSAFE nếu là `network`, `process`, `access`, `login` (những loại này dễ liên quan truy cập tài nguyên nhạy cảm, mã độc, tấn công).
+### 1. Loại Sự Kiện (event_type)
+- **SAFE**: Sự kiện bình thường như `device_change` (thay đổi thiết bị) hoặc `resource_access` (truy cập tài nguyên).
+- **UNSAFE**: Sự kiện dễ liên quan rủi ro như `network` (mạng), `process` (tiến trình), `access` (truy cập), `login` (đăng nhập).
 
-2. `duration` (thời lượng phiên):
-   - Phản ánh thời gian kết nối truy vấn.
-   - SAFE khi < 2500s.
-   - UNSAFE khi > 2500s (protocol, exfiltration, lạm dụng cố định lâu dài).
+### 2. Thời Lượng Phiên (duration)
+- **SAFE**: Dưới 2500 giây (khoảng 40 phút).
+- **UNSAFE**: Trên 2500 giây (có thể là kết nối lâu để tải dữ liệu hoặc tấn công).
 
-3. `bytes` (lượng dữ liệu chuyển):
-   - SAFE khi < 500000 (hoạt động bình thường).
-   - UNSAFE khi > 500000 (dữ liệu lớn tiềm ẩn rò rỉ).
+### 3. Lượng Dữ Liệu Chuyển (bytes)
+- **SAFE**: Dưới 500.000 bytes (hoạt động bình thường).
+- **UNSAFE**: Trên 500.000 bytes (có thể rò rỉ dữ liệu).
 
-4. `src_port` / `dst_port`:
-   - Các cổng nhạy cảm: 22, 23, 3389, 445.
-   - Chọn cổng đó thì khả năng high-risk (SSH/RDP/Telnet/SMB) => UNSAFE.
+### 4. Cổng Nguồn/Người Nhận (src_port / dst_port)
+- Cổng nhạy cảm: 22 (SSH), 23 (Telnet), 3389 (RDP), 445 (SMB).
+- **SAFE**: Không dùng cổng nhạy cảm.
+- **UNSAFE**: Dùng cổng nhạy cảm (dễ bị tấn công từ xa).
 
-5. `user`:
-   - `unknown`, `service_account` tăng rủi ro vì không chắc danh tính.
-   - Người dùng định danh tốt như `admin`/`user1` vẫn cần quan sát nếu có pattern bất thường.
+### 5. Người Dùng (user)
+- **SAFE**: Người dùng rõ ràng như `admin` hoặc `user1`.
+- **UNSAFE**: Người dùng không rõ như `unknown` hoặc `service_account` (có thể giả mạo).
 
-## 3. Quy tắc kết hợp để tạo trường hợp
+## Quy Tắc Kết Hợp Để Phân Loại
 
-### SAFE
-- `event_type` không thuộc nhóm rủi ro (e.g. `device_change`)
-- `duration` và `bytes` đều nhỏ
-- cổng không nhạy cảm
-- user có nguồn gốc rõ ràng
+### Trường Hợp SAFE
+- Loại sự kiện không rủi ro.
+- Thời lượng và dữ liệu nhỏ.
+- Không dùng cổng nhạy cảm.
+- Người dùng rõ ràng.
 
-### UNSAFE
-- ít nhất một trong bộ điều kiện sau:
-  - `duration > 2500` và `bytes > 500000` (exfiltration/long-run)
-  - `event_type` in [network, process, access, login]
-  - `src_port` hoặc `dst_port` trong [22, 23, 3389, 445]
-  - `event_type == login` + port nhạy cảm
+### Trường Hợp UNSAFE
+- Ít nhất một yếu tố sau:
+  - Thời lượng > 2500 VÀ dữ liệu > 500.000 (kết nối lâu + tải lớn).
+  - Loại sự kiện là network, process, access, hoặc login.
+  - Cổng nguồn hoặc đích là 22, 23, 3389, hoặc 445.
+  - Sự kiện login VÀ dùng cổng nhạy cảm.
 
-## 4. Ý nghĩa của các quan hệ giữa phần tử
-- `event_type` + `port` có thể biểu thị cuộc tấn công truy cập từ xa: nếu login qua 22/3389 thì rất nguy hiểm.
-- `duration` x `bytes`: phiên dài + lượng dữ liệu lớn thường là dấu hiệu exfiltration (rò rỉ dữ liệu) hoặc người dùng bị điều khiển.
-- `user` + `source`: nếu nguồn là `network_logs` + `user=unknown` dễ liên tưởng truy cập bất thường.
+## Ví Dụ Mẫu
 
-Khi nhiều yếu tố kết hợp:
-- Giảm false-negative (tăng độ nhạy): nếu bạn có 1 yếu tố nhỏ, vẫn có thể gọi unsafe khi có thêm yếu tố khác.
-- Giảm false-positive: cần giữ safe khi không có yếu tố rủi ro mới.
+### Ví Dụ SAFE
+1. event_type=access, duration=1200, bytes=100000, src_port=50000, dst_port=443, user=user1  
+   *(Truy cập bình thường, thời gian ngắn, dữ liệu ít, cổng không nhạy cảm.)*
 
-## 5. Cách tạo test case mẫu
+2. event_type=device_change, duration=900, bytes=120000, src_port=56000, dst_port=80, user=admin  
+   *(Thay đổi thiết bị, ngắn gọn.)*
 
-### Safe mẫu
-1) event_type=access, duration=1200, bytes=100000, src_port=50000, dst_port=443, user=user1
-2) event_type=device_change, duration=900, bytes=120000, src_port=56000, dst_port=80
+### Ví Dụ UNSAFE
+1. event_type=network, duration=3000, bytes=600000, dst_port=443  
+   *(Mạng, lâu, tải nhiều.)*
 
-### Unsafe mẫu
-1) event_type=network, duration=3000, bytes=600000, dst_port=443
-2) event_type=login, src_port=40000, dst_port=22, duration=1000, bytes=200000
+2. event_type=login, src_port=40000, dst_port=22, duration=1000, bytes=200000  
+   *(Đăng nhập qua SSH, cổng nhạy cảm.)*
 
-## 6. Kết luận
-- SAFE/UNSAFE được xác định bằng tích hợp các chỉ số: hành vi, thời lượng, lưu lượng, cổng mạng.
-- Khi thiết kế bộ test, hãy cân nhắc cả điều kiện đơn lẻ và multi-factor để phản ánh kịch bản tấn công thực tế.
-- Luôn đánh giá thêm lý do (`Why this classification`) để giải thích rõ ràng từng yếu tố đã kích hoạt cảnh báo.
+## Ý Nghĩa Khi Kết Hợp Yếu Tố
+- **Loại sự kiện + Cổng**: Đăng nhập qua cổng nhạy cảm rất nguy hiểm (tấn công từ xa).
+- **Thời lượng + Dữ liệu**: Phiên lâu + tải lớn có thể là rò rỉ dữ liệu hoặc bị hack.
+- **Người dùng + Nguồn**: Nếu nguồn là `network_logs` và user `unknown`, có thể truy cập bất hợp pháp.
+
+Khi nhiều yếu tố cùng xuất hiện:
+- Giảm bỏ sót (false-negative): Nếu có 1 yếu tố nhỏ, vẫn coi unsafe nếu có thêm yếu tố khác.
+- Giảm báo sai (false-positive): Chỉ coi safe khi thực sự không có rủi ro.
+
+## Kết Luận
+- SAFE/UNSAFE dựa trên sự kết hợp của hành vi, thời gian, dữ liệu, cổng, và người dùng.
+- Khi tạo bộ test, cân nhắc cả yếu tố đơn lẻ và kết hợp để mô phỏng tấn công thực tế.
+- Luôn giải thích lý do phân loại (ví dụ: "Tại sao unsafe? Vì dùng cổng 22 và thời lượng dài.") để dễ hiểu và cải thiện mô hình.

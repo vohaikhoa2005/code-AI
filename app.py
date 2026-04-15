@@ -54,7 +54,7 @@ def get_demo_cases():
             'src_ip': '192.168.1.100', 'dst_ip': '10.0.0.10',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'https', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 2.5, 'data_access_time': 'unknown', 'bytes': 1024, 'src_port': 443, 'dst_port': 443
+            'duration': 163.0, 'data_access_time': 'unknown', 'bytes': 1024, 'src_port': 443, 'dst_port': 443
         },
         {
             'source': 'network_logs', 'user': 'employee_001', 'action': 'resource_access', 'object': 'firmware',
@@ -63,7 +63,7 @@ def get_demo_cases():
             'src_ip': '192.168.1.200', 'dst_ip': '10.0.0.20',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'https', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 1.8, 'data_access_time': 'unknown', 'bytes': 2048, 'src_port': 443, 'dst_port': 443
+            'duration': 900.0, 'data_access_time': 'unknown', 'bytes': 2048, 'src_port': 443, 'dst_port': 443
         },
         {
             'source': 'app_logs', 'user': 'admin', 'action': 'login', 'object': 'dashboard_access',
@@ -72,7 +72,7 @@ def get_demo_cases():
             'src_ip': '192.168.1.150', 'dst_ip': '10.0.0.15',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'https', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 3.2, 'data_access_time': 'unknown', 'bytes': 1536, 'src_port': 443, 'dst_port': 443
+            'duration': 1400.0, 'data_access_time': 'unknown', 'bytes': 1536, 'src_port': 443, 'dst_port': 443
         },
         {
             'source': 'cloud_logs', 'user': 'employee_002', 'action': 'resource_access', 'object': 'api_call',
@@ -81,7 +81,7 @@ def get_demo_cases():
             'src_ip': '192.168.1.175', 'dst_ip': '10.0.0.22',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'https', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 0.9, 'data_access_time': 'unknown', 'bytes': 512, 'src_port': 443, 'dst_port': 443
+            'duration': 120.0, 'data_access_time': 'unknown', 'bytes': 512, 'src_port': 443, 'dst_port': 443
         },
         {
             'source': 'windows_logs', 'user': 'user3', 'action': 'read', 'object': 'database_query',
@@ -90,7 +90,7 @@ def get_demo_cases():
             'src_ip': '10.0.0.50', 'dst_ip': '10.0.0.60',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'tcp', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 4.1, 'data_access_time': 'unknown', 'bytes': 3072, 'src_port': 1433, 'dst_port': 1433
+            'duration': 1768.0, 'data_access_time': 'unknown', 'bytes': 3072, 'src_port': 1433, 'dst_port': 1433
         },
         {
             'source': 'network_logs', 'user': 'employee_003', 'action': 'process_execution', 'object': 'backup_task',
@@ -99,7 +99,7 @@ def get_demo_cases():
             'src_ip': '192.168.1.120', 'dst_ip': '10.0.0.25',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'https', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 5.7, 'data_access_time': 'unknown', 'bytes': 1048576, 'src_port': 443, 'dst_port': 443
+            'duration': 2800.0, 'data_access_time': 'unknown', 'bytes': 1048576, 'src_port': 443, 'dst_port': 443
         },
         {
             'source': 'firewall', 'user': 'unknown', 'action': 'block', 'object': 'suspicious_traffic',
@@ -108,7 +108,7 @@ def get_demo_cases():
             'src_ip': '192.168.1.1', 'dst_ip': '10.0.0.5',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'tcp', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 0.1, 'data_access_time': 'unknown', 'bytes': 64, 'src_port': 22, 'dst_port': 22
+            'duration': 80.0, 'data_access_time': 'unknown', 'bytes': 64, 'src_port': 22, 'dst_port': 22
         },
         {
             'source': 'ids_alert', 'user': 'unknown', 'action': 'alert', 'object': 'malware_detected',
@@ -117,7 +117,7 @@ def get_demo_cases():
             'src_ip': '192.168.1.50', 'dst_ip': '203.0.113.10',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'tcp', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 0.05, 'data_access_time': 'unknown', 'bytes': 128, 'src_port': 80, 'dst_port': 80
+            'duration': 20.0, 'data_access_time': 'unknown', 'bytes': 128, 'src_port': 80, 'dst_port': 80
         },
         {
             'source': 'app_logs', 'user': 'service_account', 'action': 'block', 'object': 'suspicious_access',
@@ -126,7 +126,7 @@ def get_demo_cases():
             'src_ip': '192.168.1.200', 'dst_ip': '10.0.0.8',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'tcp', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 0.2, 'data_access_time': 'unknown', 'bytes': 256, 'src_port': 22, 'dst_port': 22
+            'duration': 60.0, 'data_access_time': 'unknown', 'bytes': 256, 'src_port': 22, 'dst_port': 22
         },
         {
             'source': 'firewall', 'user': 'service_account', 'action': 'deny', 'object': 'suspicious_port_scan',
@@ -135,7 +135,7 @@ def get_demo_cases():
             'src_ip': '203.0.113.50', 'dst_ip': '10.0.0.0',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'tcp', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 0.01, 'data_access_time': 'unknown', 'bytes': 48, 'src_port': 0, 'dst_port': 0
+            'duration': 10.0, 'data_access_time': 'unknown', 'bytes': 48, 'src_port': 0, 'dst_port': 0
         },
         {
             'source': 'network_logs', 'user': 'unknown', 'action': 'network_traffic', 'object': 'data_exfiltration',
@@ -144,7 +144,7 @@ def get_demo_cases():
             'src_ip': '10.0.0.100', 'dst_ip': '203.0.113.99',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'tcp', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 12.5, 'data_access_time': 'unknown', 'bytes': 5242880, 'src_port': 443, 'dst_port': 443
+            'duration': 3120.0, 'data_access_time': 'unknown', 'bytes': 5242880, 'src_port': 443, 'dst_port': 443
         },
         {
             'source': 'ids_alert', 'user': 'unknown', 'action': 'alert', 'object': 'sql_injection_attempt',
@@ -153,7 +153,7 @@ def get_demo_cases():
             'src_ip': '203.0.113.77', 'dst_ip': '10.0.0.30',
             'cloud_service': 'unknown', 'resource_id': 'unknown',
             'protocol': 'tcp', 'method': 'unknown', 'mac_address': 'unknown',
-            'duration': 0.3, 'data_access_time': 'unknown', 'bytes': 1024, 'src_port': 80, 'dst_port': 80
+            'duration': 250.0, 'data_access_time': 'unknown', 'bytes': 1024, 'src_port': 80, 'dst_port': 80
         }
     ]
 
@@ -166,7 +166,7 @@ def initialise_session_defaults():
         'src_ip': '192.168.1.1', 'dst_ip': '10.0.0.1',
         'cloud_service': 'unknown', 'resource_id': 'unknown',
         'protocol': 'unknown', 'method': 'unknown', 'mac_address': 'unknown',
-        'duration': 0.0, 'data_access_time': 'unknown', 'bytes': 0, 'src_port': 0, 'dst_port': 0,
+        'duration': 1200.0, 'data_access_time': 'unknown', 'bytes': 0, 'src_port': 0, 'dst_port': 0,
         'random_generated': False
     }
     for k, v in defaults.items():
@@ -181,11 +181,15 @@ def set_random_case_to_session(case):
 
 
 def get_case_data_from_state():
+    object_value = st.session_state.get('object', '')
+    if not object_value or str(object_value).strip() == '':
+        object_value = 'unknown'
+
     return {
         'source': st.session_state['source'],
         'user': st.session_state['user'],
         'action': st.session_state['action'],
-        'object': st.session_state['object'],
+        'object': object_value,
         'process_id': st.session_state.get('process_id', 'unknown'),
         'parent_process': st.session_state.get('parent_process', 'unknown'),
         'device_type': st.session_state['device_type'],
@@ -208,7 +212,6 @@ def get_case_data_from_state():
 
 def random_case_callback():
     set_random_case_to_session(random.choice(get_demo_cases()))
-    st.rerun()
 
 
 
@@ -266,17 +269,15 @@ def generate_explanation(data_dict):
     if data_dict.get('action', '').lower() in ['block', 'deny', 'alert']:
         explanations.append(f"🚫 Suspicious action: '{data_dict['action']}' - security event triggered")
 
-    # Check object
-    if 'malware' in data_dict.get('object', '').lower() or 'suspicious' in data_dict.get('object', '').lower():
-        explanations.append(f"🦠 Suspicious object: '{data_dict['object']}' - potential threat detected")
+    # Check duration and bytes
+    duration = data_dict.get('duration', 0)
+    bytes_val = data_dict.get('bytes', 0)
+    if duration > 2500 and bytes_val > 500000:
+        explanations.append(f"⏱️ Long duration ({duration}s) with large data transfer ({bytes_val} bytes) - potential data exfiltration")
 
     # Check device type
     if data_dict.get('device_type', '').lower() in ['server', 'network_device']:
         explanations.append(f"🖥️ Critical device type: '{data_dict['device_type']}' - high-value asset")
-
-    # Check cloud service
-    if data_dict.get('cloud_service', '').lower() == 'unknown':
-        explanations.append("☁️ Unknown cloud service - potential unauthorized access")
 
     if len(explanations) == 0:
         explanations.append("✅ No suspicious indicators detected")
@@ -362,14 +363,13 @@ with st.container():
         st.selectbox("Username", ['unknown', 'admin', 'user1', 'user2', 'employee_001', 'service_account'], key='user')
         st.selectbox("Log Source", ['unknown', 'windows_logs', 'network_logs', 'cloud_logs', 'app_logs', 'firewall', 'web_server'], key='source')
         st.selectbox("Action", ['unknown', 'login', 'file_access', 'network_traffic', 'process_execution', 'resource_access', 'read', 'write', 'block', 'alert'], key='action')
-        st.text_input("Object", key='object')
         st.selectbox("Device Type", ['unknown', 'workstation', 'laptop', 'mobile', 'server', 'iot', 'desktop', 'network_device'], key='device_type')
 
     with col2:
         st.text_input("Source IP", key='src_ip')
         st.text_input("Destination IP", key='dst_ip')
         st.selectbox("Protocol", ['unknown', 'tcp', 'udp', 'http', 'https'], key='protocol')
-        st.number_input("Duration (seconds)", min_value=0.0, step=0.1, key='duration')
+        st.number_input("Duration (seconds)", min_value=1.0, max_value=3600.0, step=1.0, key='duration')
         st.number_input("Bytes Transferred", min_value=0, step=1, key='bytes')
         st.number_input("Source Port", min_value=0, max_value=65535, step=1, key='src_port')
         st.number_input("Destination Port", min_value=0, max_value=65535, step=1, key='dst_port')
@@ -409,147 +409,6 @@ with st.container():
     with btn_col2:
         if st.button("🎲 Generate Random Test Case", key='btn_random_case', on_click=random_case_callback):
             pass
-
-    if st.session_state.random_generated:
-        random_preview = get_case_data_from_state()
-        st.markdown("---")
-        with st.expander("💡 Random Test Case Data (auto-filled into input fields)", expanded=True):
-            preview_cols = st.columns(3)
-            fields = [
-                'user', 'source', 'action', 'object', 'device_type',
-                'src_ip', 'dst_ip', 'protocol',
-                'duration', 'bytes', 'src_port', 'dst_port'
-            ]
-            for i, f in enumerate(fields):
-                preview_cols[i % 3].write(f"**{f}**: {random_preview[f]}")
-
-        gr = predict_case(random_preview)
-        st.markdown("#### 📊 Random Case Prediction")
-        st.write(f"- Status: {'🚨 UNSAFE' if gr[0] == 1 else '✅ SAFE'}")
-        st.write(f"- Probability: {gr[1]*100:.2f}%")
-        st.write("- Reasons:")
-        for idx, reason in enumerate(gr[2], 1):
-            st.write(f"  {idx}. {reason}")
-
-
-with st.container():
-    st.header("📊 Model Evaluation Metrics & Visualizations")
-    st.write("Complete evaluation report from test set (20% of dataset)")
-    
-    try:
-        metrics = joblib.load('model_metrics.pkl')
-
-        # Key metrics in columns
-        col1, col2, col3, col4 = st.columns(4)
-
-        with col1:
-            st.metric("Recall (UNSAFE)", f"{metrics['recall']:.4f}")
-            st.caption("🎯 Detection rate for UNSAFE")
-
-        with col2:
-            st.metric("Precision (UNSAFE)", f"{metrics['precision']:.4f}")
-            st.caption("✅ Accuracy of UNSAFE predictions")
-
-        with col3:
-            st.metric("F1-Score", f"{metrics['f1']:.4f}")
-            st.caption("⚖️ Balance of recall & precision")
-
-        with col4:
-            st.metric("PR-AUC", f"{metrics['pr_auc']:.4f}")
-            st.caption("📈 Precision-Recall curve area")
-
-        st.subheader("1. Main Evaluation Dashboard")
-        st.write("Confusion matrix + metrics + PR-AUC + threshold analysis")
-        if os.path.exists('model_evaluation_metrics.png'):
-            st.image('model_evaluation_metrics.png')
-        else:
-            st.warning("Main evaluation chart not available. Run train_model.py then visualize_metrics.py")
-
-        st.subheader("2. Detailed Analysis & Recommendations")
-        st.write("Threshold analysis, model configuration, interpretation, and next steps")
-        if os.path.exists('model_detailed_analysis.png'):
-            st.image('model_detailed_analysis.png')
-        else:
-            st.info("Detailed analysis chart not available yet")
-
-        st.subheader("📋 Confusion Matrix Breakdown")
-        cm = metrics['cm']
-        tn, fp, fn, tp = cm[0][0], cm[0][1], cm[1][0], cm[1][1]
-
-        col1, col2 = st.columns(2)
-        with col1:
-            st.write(f"**✅ True Negatives (TN)**: {tn}")
-            st.caption("Correctly identified SAFE sessions")
-            st.write(f"**🔴 False Positives (FP)**: {fp}")
-            st.caption("Incorrectly flagged SAFE as UNSAFE")
-
-        with col2:
-            st.write(f"**❌ False Negatives (FN)**: {fn}")
-            st.caption("Missed UNSAFE sessions (CRITICAL!)")
-            st.write(f"**🟢 True Positives (TP)**: {tp}")
-            st.caption("Correctly detected UNSAFE sessions")
-
-        st.subheader("⚙️ Threshold Analysis from predict_proba")
-        st.write("How detection quality changes with different confidence thresholds:")
-
-        y_test = metrics['y_test']
-        preds_proba = metrics['preds_proba']
-
-        threshold_data = []
-        thresholds = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
-
-        for threshold in thresholds:
-            preds_th = (np.array(preds_proba) >= threshold).astype(int)
-            if preds_th.sum() > 0:
-                prec_th = precision_score(y_test, preds_th, zero_division=0)
-                rec_th = recall_score(y_test, preds_th, zero_division=0)
-                f1_th = 2*(prec_th*rec_th)/(prec_th+rec_th) if (prec_th+rec_th)>0 else 0
-                threshold_data.append({
-                    'Threshold': f"{threshold:.1f}",
-                    'Precision': f"{prec_th:.4f}",
-                    'Recall': f"{rec_th:.4f}",
-                    'F1-Score': f"{f1_th:.4f}"
-                })
-
-        st.dataframe(pd.DataFrame(threshold_data))
-
-        st.info("""
-        **💡 Threshold Recommendations:**
-        - **0.5** (Default): Balanced detection and false positive rate → General monitoring
-        - **0.3-0.4** (Conservative): High detection rate, more alerts → When security is critical
-        - **0.6-0.7** (Strict): Low false positives, may miss threats → Reduce alert fatigue
-        """)
-
-        st.subheader("📊 Metrics Interpretation")
-        col1, col2 = st.columns(2)
-
-        with col1:
-            st.write(f"""
-            **Recall (Sensitivity)**: {metrics['recall']:.4f}
-            - Detects {metrics['recall']*100:.1f}% of actual UNSAFE cases
-            - Misses {(1-metrics['recall'])*100:.1f}% of threats (FN={fn})
-            - Model is {'🟢 GOOD' if metrics['recall'] > 0.7 else '🟡 MODERATE' if metrics['recall'] > 0.5 else '🔴 POOR'} at detection
-            
-            **Precision**: {metrics['precision']:.4f}
-            - When flagged as UNSAFE, correct {metrics['precision']*100:.1f}% of time
-            - False alarm rate: {(1-metrics['precision'])*100:.1f}% (FP={fp})
-            """)
-
-        with col2:
-            st.write(f"""
-            **F1-Score**: {metrics['f1']:.4f}
-            - Harmonic mean of recall & precision
-            - Best for imbalanced classification
-            
-            **PR-AUC**: {metrics['pr_auc']:.4f}
-            - Scale: 0.5 (baseline) to 1.0 (perfect)
-            - This model: {'🟢 EXCELLENT (>0.8)' if metrics['pr_auc'] > 0.8 else '🟡 GOOD (>0.6)' if metrics['pr_auc'] > 0.6 else '🔴 NEEDS IMPROVEMENT'}
-            """)
-
-    except FileNotFoundError:
-        st.warning("⚠️ Model metrics not available. Please run training first:")
-        st.code("python train_model.py")
-        st.code("python visualize_metrics.py")
 
 st.markdown("---")
 st.markdown(
